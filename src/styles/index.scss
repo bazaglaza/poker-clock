@@ -4,3 +4,59 @@
 body{
     background-color: $main_background_color;
 }
+
+.container{
+    width: 1100px;
+    margin: 0 auto;
+}
+.clock {
+    width: 300px;
+    height: 150px;
+    margin: 200px auto;
+    border-radius: 10px;
+    background-color: aqua;
+    &__timer{
+        width: 100%;
+        height: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    &__control{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 50%
+    }
+    &__buttons{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    &__timer{
+        font-size: 50px;
+        color: blueviolet;
+    }
+
+    button{
+        padding: 10px 20px;
+        border-radius: 5px;
+        background-color: blueviolet;
+        color: antiquewhite;
+        cursor: pointer;
+        &:hover{
+            background-color: rgb(162, 76, 243); 
+        }
+    }
+    &__stop-button, &__reset-button, &__resume-button{
+        margin: 0 4px;
+    }
+}
+.slider-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 8px 0;
+}
