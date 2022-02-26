@@ -18,9 +18,23 @@ const TimerControl = (props) => {
         changeStatusToStopped();
       }
       if ((status === 3)&&(props.time > 0)){
-        changeStatusToPaused();
+        startTimer();
       }
     }, [props.time])
+
+    function runTimer(){
+        props.setTime(prevTime => prevTime - 1);
+    }
+
+    function startTimer(){
+        runTimer();
+        setInterv(setInterval(runTimer, 1000));
+        changeStatusToRunning();
+    }
+    function stopTimer(){
+        clearInterval(interv);
+        changeStatusToPaused();
+    }
 
     return (
         <div className='clock__control'>
@@ -35,22 +49,17 @@ const TimerControl = (props) => {
             <div className='clock__buttons'>
                 { (status === 0) ?
                     <TimerRunButton 
-                        setTime={props.setTime} 
-                        setInterv={setInterv} 
-                        changeStatusToRunning={changeStatusToRunning}
+                        startTimer={startTimer}
                     >RUN</TimerRunButton> : ""
                 }
                 { (status === 1) ?
                     <TimerStopButton 
-                        interv={interv} 
-                        changeStatusToPaused={changeStatusToPaused}
+                        stopTimer={stopTimer}                       
                     >STOP</TimerStopButton> : ""
                 }
                 { (status === 2) ?
                     <TimerRunButton 
-                        setTime={props.setTime} 
-                        setInterv={setInterv} 
-                        changeStatusToRunning={changeStatusToRunning}
+                        startTimer={startTimer}
                     >RESUME</TimerRunButton> : ""
                 }
             </div>
